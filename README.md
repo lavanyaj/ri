@@ -1,4 +1,4 @@
 ri
 ==
 
-Road Surface Distress Detection (Robotics Institute, Carnegie Mellon)
+Back-end location/weather features for data from Android camera app
