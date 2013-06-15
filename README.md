@@ -1,4 +1,4 @@
 ri
 ==
 
-Back-end location/weather features for data from Android camera app
+Run weathr.sh in directory with data from Android camera
