@@ -1,0 +1,119 @@
+Weather script
+
+Background
+Time and gps based dataset from Android camera attached to vehicle. Consists of 
+directory separated based on ranges of time and geographical coordinates. Each 
+directory contains a video file, images, and other text files (with gps etc. data).
+ 
+Task
+Add new file with relevant weather details to each directory in dataset.
+
+Goal of the Project
+Write script that automates the process of accessing directories, and for each 
+directory, gets relevant weather data, and writes new file with this data.
+
+Technologies Used
+Used Forecast.io API to get weather data using get requests. Used Python to 
+accomplish tasks, and bash scripting for automating task for all directories. 
+
+Approach
+I looked into various weather APIs. I found a comprehensive blog post that covers a 
+bunch of other Weather APIs. I worked with a couple APIs including Weather 
+Underground, before finally picking Forecast.io. 
+
+I wrote Python files to get and parse the weather data, and write it to a new file in 
+the directory. Finally, I wrote a bash script to run the files over all directories.
+
+Instructions
+The final script is called weathr.sh. The script uses 2 other python files: get.py, and 
+parse.py. These files need to be in the same directory as the data-set directory 
+(referred to as ?video-data? in the example).
+
+Run weathr.sh with the path name of the directory as the command line argument.
+Example:
+
+List files:
+
+$ ls
+weathr.sh
+parse.py
+get.py
+video-data
+
+Error case (Missing argument):
+ 
+$ weathr.sh
+Error. Enter path name
+
+Successful case:
+
+$ weathr.sh video-data
+20130531_080242_028
+Processing...
+done task 
+?
+Forecast.io
+Clean and simple to use, reliable sources of data, and offers a good price versus 
+number of calls deal for our purpose of our project. 
+
+How it works
+The API uses a JSON interface. The Forecast API lets you query for most locations on 
+the globe.
+
+There are two main API calls. The first is used for the current forecast. The second 
+lets you query for a specific time, past or future (for many places, 60 years in the 
+past to 10 years in the future). We use the second query for our task:
+
+https://api.forecast.io/forecast/APIKEY/LATITUDE,LONGI
+TUDE,TIME
+
+Currently, the parse file parses for selected properties: timezone, current time, 
+current temperature, current cloud cover, current precipitation intensity, and a 
+human readable summary text. 
+
+There are other properties such as rain intensity offered by the API [1]. These can 
+also be parsed by changing the parse.py file accordingly, in keeping with the JSON 
+format.
+
+Line 1 is the actual data, and line 2 is the corresponding keywords. Contents of a 
+sample final weather.txt file:
+
+1370001600 71.13 0.06 0 Clear
+time temperature cloudCover precipIntensity summary
+
+Raw Data Sources
+Forecast.io uses a wide range of data sources, which are aggregated together 
+statistically to provide the most accurate forecast possible for a given location. Their 
+sources include private weather forecasting system and public or government 
+organizations. [2]
+
+Pricing and Limitations 
+The first thousand API calls made per day, are. Every 10,000 API calls after that cost 
+$1. However, we are expecting to make less than thousand calls in a day. [3]
+
+?
+Links
+
+1. List of parameters offered by the forecat.io API 
+https://developer.forecast.io/docs/v2#time_call
+2. Full list of raw data sources used by forecast.io 
+http://forecast.io/raw/
+3. Complete forecast.io Terms of Use
+https://developer.forecast.io/terms_of_use.txt
+
+Appendix
+Relevant files:
+1. weathr.sh
+2. get.py
+3. parse.py
+
+Project
+Road Surface Distress Detection, Robotics Institute
+
+For questions or suggestions, contact
+Sobhagya Jose
+sjose@cmu.edu
+
+
+5
+
